@@ -9,12 +9,19 @@ class Country_data:
         self.max_temp = self.file_data["max_temp"]
         self.min_temp = self.file_data["min_temp"]
 
+    def is_comfortable(self):
+        return self.max_temp - self.min_temp >= 10
+
     def read_data(self):
         with open(self.file_path) as file:
             return load(file)
 
 egypt = Country_data("java.json")
-print(*egypt.file_data.keys())
+print(*egypt.file_data.keys(), sep="\n")
 print(egypt.country)
 print(egypt.max_temp)
 print(egypt.min_temp)
+if egypt.is_comfortable():
+    print("egypt is comfortable")
+else:
+    print("egypt is not comfortable")
